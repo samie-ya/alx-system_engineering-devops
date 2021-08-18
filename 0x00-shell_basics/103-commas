@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -aXm
+ls -am
