@@ -1,2 +1,2 @@
 #!/bin/bash
-chmod a+x /d*
+find ./ -type d -exec chmod 111 {} \;
