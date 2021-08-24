@@ -1,2 +1,3 @@
 #!/bin/bash
-echo "$((BREATH**LOVE))\n"
+echo -e "$((BREATH**LOVE))\n"
+
