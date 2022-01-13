@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #This script is used to cut lines into words
 FILE="/etc/passwd"
-while IFS=: read -r username password userid groupid comment homedir cmdshell
+while IFS=: read -r username userid homedir
 do
     echo "$username:$userid:$homedir"
 done < $FILE
