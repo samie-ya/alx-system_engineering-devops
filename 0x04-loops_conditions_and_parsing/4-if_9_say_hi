@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#This script is dispalying Best School 10 times using while loop
+names='Best School'
+i=1
+while [ $i -le 10 ]
+do
+   if [ $i -eq 9 ]
+   then
+       echo "$names"
+       echo Hi
+   else
+       echo "$names"
+   fi
+   ((i++))
+done
