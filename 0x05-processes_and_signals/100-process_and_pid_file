@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+#This script will create a .pid file in /var/run that will run infinite loop with #signals
+echo $$ > /var/run/myscript.pid
+FILE="/var/run/myscript.pid"
+signal_handler()
+{
+    echo 'I hate the kill command'
+    rm "$FILE"
+    exit
+}
+trap signal_handler SIGTERM
+trap "{ echo 'Y U no love me?!'; }" SIGINT
+trap 'rm $FILE; exit' SIGQUIT
+while true
+do
+    echo "To infinity and beyond"
+    sleep 1
+done
