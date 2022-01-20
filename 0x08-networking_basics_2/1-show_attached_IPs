@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#Display all active IPV4
+IP="$(ifconfig | grep "inet" | awk '{print $2}' | awk 'NR % 2 == 1 {print}')" 
+echo "$IP"
