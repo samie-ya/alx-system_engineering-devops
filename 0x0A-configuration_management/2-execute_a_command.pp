@@ -1,4 +1,4 @@
 # This will kill a process using pkill
-Exec { 'kill a process':
-  command => 'pkill killmenow', 
+exec { 'kill a process':
+  command => 'pkill killmenow',
 }
