@@ -1,8 +1,11 @@
 # This script will use Puppet to make changes to our configuration file
-::ssh::client::config::user { 'vagrant':
-  ensure => present,
-  options => {
-    'PasswordAuthentication' => 'No'
-    'IdentityFile'           => ~/.ssh/school
-  }
+class { 'ssh::client':
+  storeconfigs_enabled => false,
+  options              => {
+    'Host *' => {
+      'HostName'                => '34.148.148.119',
+      'PasswordAuthenitication' => 'No',
+      'IdentityFile'            => '~/.ssh/school',
+    },
+  },
 }
