@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # This script will copy a file from local to server
 
-if [ "$#" -ge 2 ]
+if [ "$#" -le 3 ]
 then
     scp -i "$4" "$1" "$3"@"$2":~/
 else
