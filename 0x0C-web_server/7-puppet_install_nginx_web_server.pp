@@ -17,6 +17,15 @@ file { '/var/www/html/index.nginx-debian.html':
   require => Package['nginx']
 }
 
+file_line { 'debian.html':
+  ensure => present,
+  path   => '/etc/nginx/sites-available/default',
+  line   => 'server_name 34.148.148.119;\n\n\treturn 200 "Hello World!" ;\n',
+  match  => 'server_name _;',
+  notify  => Service['nginx'],
+  require => Package['nginx']
+}
+
 file_line { '301 permanent redirect':
   ensure => present,
   path   => '/etc/nginx/sites-available/default',
