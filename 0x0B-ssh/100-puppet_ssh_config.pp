@@ -8,6 +8,8 @@ file_line { 'ssh config for password':
     match  => '^PasswordAuthentication'
 }
 
+include stdlib
+
 file_line { 'ssh config for ID':
     ensure => present,
     path   => '/etc/ssh/ssh_config',
