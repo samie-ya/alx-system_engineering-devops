@@ -10,18 +10,11 @@ package { 'nginx':
   require => Exec['apt-get update']
 }
 
-file { '/var/www/html/index.nginx-debian.html':
-  ensure  => "present",
-  content => "Hello World!",
-  notify  => Service['nginx'],
-  require => Package['nginx']
-}
-
 file_line { 'debian.html':
   ensure => present,
   path   => '/etc/nginx/sites-available/default',
-  line   => 'server_name 34.148.148.119;\n\n\treturn 200 "Hello World!" ;\n',
-  match  => 'server_name _;',
+  line   => 'location / {\n\t\treturn 200 "Hello World!" ;\n\t}\n',
+  match  => '^location /',
   notify  => Service['nginx'],
   require => Package['nginx']
 }
