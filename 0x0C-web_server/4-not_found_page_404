@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# This script will redirect /redirect_me
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo ufw --force enable
+sudo ufw allow 'Nginx HTTP'
+echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/error404.html
+sudo sed -i -e "s+:80 default_server;+:80 default_server;\n\n\terror_page 404 /error404.html;\n\tlocation = /xyz {\n\t\troot /usr/share/nginx/html;\n\t\tinternal;\n\t}\n+g" /etc/nginx/sites-enabled/default
+sudo service nginx restart
