@@ -3,7 +3,7 @@ node default {
   include stdlib
   file_line { 'ssh config':
     ensure => present,
-    path   => '/etc/ssh/config',
+    path   => '/etc/ssh/ssh_config',
     line   => 'PasswordAuthenitication No', 'IdentityFile ~/.ssh/school',
   }
 }
