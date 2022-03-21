@@ -1,34 +1,5 @@
-# This script will install nginx and configure it
-include stdlib
-
-exec { 'sudo apt-get update':
-  command => '/usr/bin/apt-get update'
-}
-
-package { 'nginx':
-  ensure  => 'installed',
-  require => Exec['apt-get update']
-}
-
-file_line { 'debian.html':
-  ensure => present,
-  path   => '/etc/nginx/sites-available/default',
-  line   => 'location / {\n\t\treturn 200 "Hello World!" ;\n\t}\n',
-  match  => '^location /',
-  notify  => Service['nginx'],
-  require => Package['nginx']
-}
-
-file_line { '301 permanent redirect':
-  ensure => present,
-  path   => '/etc/nginx/sites-available/default',
-  line   => 'server_name 34.148.148.119;\n\n\tlocation /redirect_me {\n\t\treturn 301 "https://www.youtube.com/watch?v=QH2-TGUlwu4" ;\n\t}\n',
-  match  => '^server_name _;',
-  notify  => Service['nginx'],
-  require => Package['nginx']
-}
-
-service { 'nginx':
-  ensure => running,
-  enable => true
+# This script will install nginx and configure
+exec { 'configure nginx':
+  command  => 'sudo apt-get update; sudo apt-get -y install nginx; sudo ufw --force enable; sudo ufw allow "Nginx HTTP"; echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html; sudo sed -i -e "s+server_name _;+server_name 34.148.148.119;\n\trewrite ^/redirect_me https://www.youtube.com permanent;\n+" /etc/nginx/sites-available/default; echo "Ceci n\'est pas une page\n" | sudo tee /var/www/html/error404.html; sudo sed -i -e "s+:80 default_server;+:80 default_server;\n\n\terror_page 404 /error404.html;\n\tlocation = /xyz {\n\t\troot /var/www/html;\n\t\tinternal;\n\t}\n+g" /etc/nginx/sites-enabled/default; sudo service nginx restart',
+  provider => shell,
 }
