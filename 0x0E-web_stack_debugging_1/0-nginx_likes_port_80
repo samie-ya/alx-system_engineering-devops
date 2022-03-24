@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # Listening on 80
 apt-get update
-apt-get nginx
+apt-get -y install nginx
 service nginx restart
-sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
