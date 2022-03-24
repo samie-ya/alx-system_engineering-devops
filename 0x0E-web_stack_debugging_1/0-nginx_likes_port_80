@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Listening on 80
+apt-get update
+apt-get nginx
+service nginx restart
