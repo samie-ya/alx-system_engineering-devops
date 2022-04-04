@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+ssh ubuntu@34.148.148.119
 sudo apt update
 sudo apt install ufw
 sudo ufw enable
