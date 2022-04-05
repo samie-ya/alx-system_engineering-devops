@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# This will create a privileged user with root attributes
+sudo useradd "$1"
+sudo passwd -d "$1" > /dev/null
+sudo usermod -aG sudo "$1"
+echo "whoami" | su - "$1"
