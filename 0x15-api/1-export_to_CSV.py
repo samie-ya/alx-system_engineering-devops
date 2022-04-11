@@ -23,12 +23,8 @@ if __name__ == "__main__":
         i['username'] = i['id']
         del i['id']
         i['username'] = user_name
-        i['finished'] = i['completed']
-        del i['completed']
-        i['task'] = i['title']
-        del i['title']
     file_name = sys.argv[1] + ".csv"
-    with open(file_name, 'w') as f:
-        csv_file = csv.writer(f, quoting=csv.QUOTE_ALL)
+    with open(file_name, "w", encoding='utf-8') as new_file:
+        csv_file = csv.writer(new_file, quoting=csv.QUOTE_ALL)
         for i in id_list:
             csv_file.writerow(i.values())
