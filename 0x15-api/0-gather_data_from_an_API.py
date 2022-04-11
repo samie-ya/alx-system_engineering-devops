@@ -26,8 +26,8 @@ if __name__ == "__main__":
         else:
             count_unfinished += 1
     print("Employee {} is done with tasks({}/{}):".format(name, count_finished,
-                                                          count_finished
-                                                          + count_unfinished))
+                                                          count_finished +
+                                                          count_unfinished))
     for i in id_list:
         if i.get('completed'):
             print("\t {}".format(i.get('title')))
