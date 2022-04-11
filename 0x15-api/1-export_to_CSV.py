@@ -25,6 +25,8 @@ if __name__ == "__main__":
         i['username'] = user_name
     file_name = sys.argv[1] + ".csv"
     with open(file_name, "w", encoding='utf-8') as new_file:
-        csv_file = csv.writer(new_file, quoting=csv.QUOTE_ALL, delimiter=',')
+        fields = ["userId", "username", "completed", "title"]
+        csv_file = csv.DictWriter(new_file, fieldnames=fields,
+                                  quoting=csv.QUOTE_ALL)
         for i in id_list:
-            csv_file.writerow(i.values())
+            csv_file.writerow(i)
