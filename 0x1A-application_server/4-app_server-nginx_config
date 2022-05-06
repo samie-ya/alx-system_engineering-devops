@@ -1,0 +1,10 @@
+server {
+        listen 80;
+        server_name 18.232.185.48;
+
+        location /api/ {
+                proxy_pass http://localhost:5002/api/;
+                include /etc/nginx/proxy_params;
+                proxy_redirect off;
+        }
+}
