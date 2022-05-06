@@ -1,0 +1,10 @@
+server {
+        listen 80;
+        server_name 18.232.185.48;
+
+        location /airbnb-dynamic/number_odd_or_even {
+                proxy_pass http://localhost:5001/number_odd_or_even;
+                include /etc/nginx/proxy_params;
+                proxy_redirect off;
+        }
+}
